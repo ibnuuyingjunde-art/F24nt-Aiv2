@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="auto">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>F24nT ai</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="assets/css/style.css"/>
+<link rel="stylesheet" href="assets/css/chat.css"/>
+<link rel="stylesheet" href="assets/css/responsive.css"/>
+
+<!-- External -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark" disabled/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="ls">
+  <svg class="ls-svg" viewBox="0 0 100 100" fill="none">
+    <g class="lr1"><circle cx="50" cy="50" r="44" stroke="rgb(207,100,58)" stroke-width="6" stroke-linecap="round" stroke-dasharray="210 60" opacity=".9"/></g>
+    <g class="lr2"><circle cx="50" cy="50" r="32" stroke="rgb(195,85,40)" stroke-width="5" stroke-linecap="round" stroke-dasharray="140 60" opacity=".7"/></g>
+    <g class="lr3"><circle cx="50" cy="50" r="20" stroke="rgb(207,100,58)" stroke-width="4" stroke-linecap="round" stroke-dasharray="78 46" opacity=".85"/></g>
+    <circle class="lcore" cx="50" cy="50" r="9" fill="rgb(207,100,58)" opacity=".8"/>
+  </svg>
+  <div class="ls-txt">F24nT ai</div>
+</div>
+
+<!-- AUTH -->
+<div id="auth">
+  <div class="acard">
+    <div class="alogo">
+      <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke="rgb(207,100,58)" stroke-width="7" stroke-linecap="round" stroke-dasharray="210 60"/>
+        <circle cx="50" cy="50" r="30" stroke="rgb(195,85,40)" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="140 38" opacity=".7"/>
+        <circle cx="50" cy="50" r="16" stroke="rgb(207,100,58)" stroke-width="4" stroke-linecap="round" stroke-dasharray="78 18"/>
+        <circle cx="50" cy="50" r="7" fill="rgb(207,100,58)" opacity=".85"/>
+      </svg>
+      <span class="awm">F24nT ai</span>
+    </div>
+    <h1 class="ah1" id="ah">Welcome back</h1>
+    <p class="asub" id="asub">Sign in to continue your conversations</p>
+    <div class="aerr" id="aerr"></div>
+    <button class="abtn" onclick="loginGoogle()">
+      <svg class="aico" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      <span class="albl">Continue with Google</span>
+    </button>
+    <button class="abtn" onclick="loginGithub()">
+      <svg class="aico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      <span class="albl">Continue with GitHub</span>
+    </button>
+    <button class="abtn" onclick="loginGuest()">
+      <svg class="aico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="albl">Continue as Guest</span>
+    </button>
+    <div class="adiv"><span>or</span></div>
+    <input class="ainp" type="email" id="ae" placeholder="Email address" autocomplete="email"/>
+    <input class="ainp" type="password" id="ap" placeholder="Password" autocomplete="current-password"/>
+    <button class="asub-btn" id="asb" onclick="loginEmail()">Sign in</button>
+    <div class="atgl"><span id="atgt">Don't have an account?</span><a id="atgl" onclick="toggleMode()"> Sign up</a></div>
+    <div class="anote">Guest sessions are temporary and not saved</div>
+    <div class="auth-upgrade-link">
+      <button onclick="openUpgrade()">⚡ Upgrade to Abyz Plan — Rp15.000/bulan</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="sbov" id="sbov" onclick="closeSb()"></div>
+<div id="app">
+
+  <!-- SIDEBAR -->
+  <nav id="sb">
+    <div id="sb-top">
+      <div id="sb-logo" onclick="newChat()" ondblclick="unlockNekopoi()">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="44" stroke="rgb(207,100,58)" stroke-width="7" stroke-linecap="round" stroke-dasharray="210 60"/>
+          <circle cx="50" cy="50" r="30" stroke="rgb(195,85,40)" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="140 38" opacity=".7"/>
+          <circle cx="50" cy="50" r="16" stroke="rgb(207,100,58)" stroke-width="4" stroke-linecap="round" stroke-dasharray="78 18"/>
+          <circle cx="50" cy="50" r="7" fill="rgb(207,100,58)" opacity=".85"/>
+        </svg>
+        <span class="sb-wm">F24nT ai</span>
+      </div>
+      <button class="ib-btn" onclick="newChat()" title="New chat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+
+    <div id="sb-sw">
+      <span class="sb-si-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+      <input id="sb-si" placeholder="Search conversations…" oninput="searchChats(this.value)"/>
+    </div>
+
+    <div id="sb-nav">
+      <div class="ni act" id="n-chats" onclick="showChats()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chats
+      </div>
+      <div class="ni" id="n-star" onclick="showStarred()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Starred
+      </div>
+      <div class="ni" id="n-proj" onclick="showProjects()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Projects
+      </div>
+      <div class="ni" id="n-tools" onclick="showTools()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Tools
+      </div>
+      <div class="ni" id="n-incog" onclick="toggleIncog()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5.5 5 9.5V18a1.5 1.5 0 0 0 2.6 1l.9-1 1.4 1.4a1.5 1.5 0 0 0 2.2 0L13.5 18l1.4 1.4a1.5 1.5 0 0 0 2.2 0l.9-1A1.5 1.5 0 0 0 20.6 18V9.5C19 5.5 16 2 12 2z"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+        Incognito <span class="ibadge" id="incog-badge">ON</span>
+      </div>
+      <div class="ni" onclick="openUpgrade()" style="color:rgb(139,92,246)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgb(139,92,246)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Abyz Plan
+      </div>
+      <div class="ni" id="sb-gokil-btn" onclick="openGokilSettings()" style="display:none;color:rgb(245,158,11)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgb(245,158,11)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Gokil Settings
+      </div>
+    </div>
+
+    <div id="sb-hist">
+      <div id="no-hist">No conversations yet.<br>Start a new chat!</div>
+    </div>
+
+    <!-- TOOLS PANEL -->
+    <div class="panel" id="p-tools">
+      <div class="ph"><button class="ib-btn" onclick="closePanel('p-tools')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><span class="pt">Anime &amp; AI Tools</span></div>
+      <div class="pb" id="tools-body">
+        <div style="font-size:12px;color:rgb(var(--tx4));padding:2px 4px 10px;line-height:1.5">• Anime: Nonton, Search, Detail<br>• NekoPoi: Klik 5x logo atau Ctrl+Shift+5<br>• AI Tools: Text2Image, Image2Prompt, E-KTP</div>
+        
+        <div style="margin:12px 0 8px;font-size:15px;font-weight:600;color:rgb(var(--tx0))">AI Tools</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:12px">
+          <div class="aif-card" onclick="useTool('text2image')" style="border-color:rgba(139,92,246,.3)">
+            <div class="aif-ic" style="background:rgba(139,92,246,.15);color:var(--abyz)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div class="aif-t"><div class="aif-n">Text2Image</div><div class="aif-d">Generate gambar dari teks</div></div>
+          </div>
+          <div class="aif-card" onclick="useTool('image2prompt')" style="border-color:rgba(139,92,246,.3)">
+            <div class="aif-ic" style="background:rgba(139,92,246,.15);color:var(--abyz)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
+            <div class="aif-t"><div class="aif-n">Image2Prompt</div><div class="aif-d">Upload gambar → deskripsi prompt</div></div>
+          </div>
+          <div class="aif-card" onclick="useTool('ektp')" style="border-color:rgba(139,92,246,.3)">
+            <div class="aif-ic" style="background:rgba(139,92,246,.15);color:var(--abyz)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+            <div class="aif-t"><div class="aif-n">E-KTP Generator</div><div class="aif-d">Generate KTP dari data</div></div>
+          </div>
+        </div>
+
+        <div class="anime-container">
+          <div class="anime-search-bar">
+            <input id="anime-search-input" placeholder="Cari anime..." onkeydown="if(event.key==='Enter')searchAnime()"/>
+            <button onclick="searchAnime()">Search</button>
+            <button onclick="loadAnimeHome()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Home</button>
+            <button onclick="loadAnimeOngoing()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Ongoing</button>
+            <button onclick="loadAnimePopular()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Popular</button>
+            <button onclick="loadAnimeSchedule()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Schedule</button>
+          </div>
+
+          <div class="anime-tabs">
+            <button class="active" data-tab="anime" onclick="switchAnimeTab('anime')">Anime</button>
+            <button id="nekopoi-tab-btn" data-tab="nekopoi" onclick="switchAnimeTab('nekopoi')" style="display:none">NekoPoi</button>
+          </div>
+
+          <div id="anime-content">
+            <div id="anime-grid" class="anime-grid"></div>
+            <div id="anime-detail" style="display:none"></div>
+          </div>
+
+          <div id="nekopoi-content" style="display:none">
+            <div class="anime-search-bar">
+              <input id="nekopoi-search-input" placeholder="Cari NekoPoi..." onkeydown="if(event.key==='Enter')searchNekopoi()"/>
+              <button onclick="searchNekopoi()">Search</button>
+              <button onclick="loadNekopoiRandom()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Random</button>
+              <button onclick="loadNekopoiGenres()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Genres</button>
+              <button onclick="loadNekopoiSchedule()" style="background:rgb(var(--bg2));color:rgb(var(--tx1))">Schedule</button>
+            </div>
+            <div id="nekopoi-grid" class="anime-grid"></div>
+            <div id="nekopoi-detail" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-star">
+      <div class="ph"><button class="ib-btn" onclick="closePanel('p-star')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><span class="pt">Starred</span></div>
+      <div class="pb" id="star-body"><div class="pempty" id="star-empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><p>Star important conversations to find them quickly.</p></div></div>
+    </div>
+
+    <div class="panel" id="p-proj">
+      <div class="ph"><button class="ib-btn" onclick="closePanel('p-proj')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><span class="pt">Projects</span><button class="ib-btn" onclick="openModal('pm')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button></div>
+      <div class="pb" id="proj-body"><div class="padd" onclick="openModal('pm')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>New Project</div><div id="proj-list"></div><div class="pempty" id="proj-empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><p>Group related conversations into projects.</p></div></div>
+    </div>
+
+    <div class="panel" id="p-stg">
+      <div class="ph"><button class="ib-btn" onclick="closePanel('p-stg')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><span class="pt">Settings</span></div>
+      <div class="pb">
+        <div class="sg-sec">
+          <div class="sg-tl">Appearance</div>
+          <div class="sg-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><div class="sg-lbl">Theme</div></div>
+          <div class="th-opts"><button class="th-opt" id="th-a" onclick="setTheme('auto')">Auto</button><button class="th-opt" id="th-l" onclick="setTheme('light')">Light</button><button class="th-opt" id="th-d" onclick="setTheme('dark')">Dark</button></div>
+        </div>
+        <div class="sg-sec">
+          <div class="sg-tl">AI Provider</div>
+          <div class="sg-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="sg-lbl"><div>Current: <span id="stg-provider">Claude Opus 4.5</span></div><div class="sg-sub">Powered by YoeNw24</div></div></div>
+        </div>
+        <div class="sg-sec">
+          <div class="sg-tl">Kode</div>
+          <div class="sg-row cl" onclick="toggleHL()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><div class="sg-lbl"><div>Syntax Highlighting</div><div class="sg-sub">Warna kode di code block</div></div><button class="tog on" id="hltog" onclick="event.stopPropagation();toggleHL()"></button></div>
+        </div>
+        <div class="sg-sec">
+          <div class="sg-tl">Data</div>
+          <div class="dbtn" onclick="confirmClear()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>Clear All Conversations</div>
+        </div>
+        <div class="sg-sec">
+          <div class="sg-tl">Abyz Plan</div>
+          <div class="sg-row cl" onclick="openUpgrade()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgb(139,92,246)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><div class="sg-lbl" style="color:rgb(139,92,246)"><div id="stg-abyz-status">Upgrade to Abyz Plan</div><div class="sg-sub">Unlimited messages + Pro models + NekoPoi</div></div></div>
+        </div>
+        <div class="sg-sec">
+          <div class="sg-tl">About</div>
+          <div class="sg-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div class="sg-lbl"><div>F24nT ai</div><div class="sg-sub">Version 7.0 · Powered by YoeNw24</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sb-bot">
+      <button class="sb-btn" onclick="closeAllPanels();openPanel('p-stg')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0M4.93 19.07a10 10 0 0 0 14.14 0M1 12h2m18 0h2"/></svg>Settings
+      </button>
+      <div id="ub" onclick="openProfile()">
+        <div class="uav" id="uav">U<div class="abyz-ring"></div></div>
+        <span class="unm" id="unm">User</span>
+        <span class="abyz-badge-sm" id="sb-abyz-badge" style="display:none">ABYZ</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:rgb(var(--tx4));margin-left:auto"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div id="main">
+    <div id="tb">
+      <button id="mob-tog" onclick="toggleSb()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div id="mw">
+        <button id="mb" onclick="toggleMDD()">
+          <div class="mdot" id="mdot"></div>
+          <span id="mnm">F24nT ai</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dov" id="mddov" onclick="closeMDD()"></div>
+        <div class="dd" id="mdd" style="width:310px;max-height:70vh;overflow-y:auto;scrollbar-width:thin">
+          <div style="padding:5px 10px 3px;font-size:10px;font-weight:700;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.07em">AI Models - Powered by YoeNw24</div>
+          
+          <div class="mo sel" data-m="Claude Opus 4.5" data-ep="claude-opus-45" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#d97706,#b45309)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="moinf"><div class="monm">Claude Opus 4.5</div><div class="modc">AI paling cerdas untuk reasoning kompleks</div></div>
+            <svg class="mochk" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+
+          <div class="mo" data-m="Claude Opus 4.6" data-ep="claude-opus-46" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="moinf"><div class="monm">Claude Opus 4.6</div><div class="modc">Analisis data & dokumen kompleks</div></div>
+          </div>
+
+          <div class="mo" data-m="Claude Opus 4.7" data-ep="claude-opus-47" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="moinf"><div class="monm">Claude Opus 4.7</div><div class="modc">Writing, coding & creative tasks</div></div>
+          </div>
+
+          <div class="mo" data-m="Claude Opus 4.8" data-ep="claude-opus-48" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#fcd34d,#fbbf24)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="moinf"><div class="monm">Claude Opus 4.8</div><div class="modc">Debugging & problem solving expert</div></div>
+          </div>
+
+          <div class="mo" data-m="Claude Sonnet 4.6" data-ep="claude-sonnet-46" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#f97316,#ea580c)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="moinf"><div class="monm">Claude Sonnet 4.6</div><div class="modc">Balanced AI serba guna terbaik</div></div>
+          </div>
+
+          <div style="padding:5px 10px 3px;font-size:10px;font-weight:700;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.07em;margin-top:6px">DeepSeek Series</div>
+
+          <div class="mo" data-m="DeepSeek R1" data-ep="deepseek-r1" data-pro="0" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0v-15A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 8A2.5 2.5 0 0 1 17 10.5v9a2.5 2.5 0 0 1-5 0v-9A2.5 2.5 0 0 1 14.5 8z"/></svg></div>
+            <div class="moinf"><div class="monm">DeepSeek R1</div><div class="modc">Chain-of-thought reasoning terbaik</div></div>
+          </div>
+
+          <div class="mo" data-m="DeepSeek V3.2 Thinking" data-ep="deepseek-v32-thinking" data-pro="0" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#14b8a6,#0d9488)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="moinf"><div class="monm">DeepSeek V3.2 Thinking</div><div class="modc">Deep reasoning & problem solving</div></div>
+          </div>
+
+          <div class="mo" data-m="DeepSeek V4 Flash" data-ep="deepseek-v4-flash" data-pro="0" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#10b981,#059669)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="moinf"><div class="monm">DeepSeek V4 Flash</div><div class="modc">Respons cepat & akurat</div></div>
+          </div>
+
+          <div style="padding:5px 10px 3px;font-size:10px;font-weight:700;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.07em;margin-top:6px">Other AI</div>
+
+          <div class="mo" data-m="FeelBetter AI" data-ep="feelbetter-ai" data-pro="0" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#ec4899,#db2777)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="moinf"><div class="monm">FeelBetter AI</div><div class="modc">Mental health & emotional support</div></div>
+          </div>
+
+          <div class="mo" data-m="Grok 4.1" data-ep="grok-41" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#1a1a1a,#333)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="moinf"><div class="monm">Grok 4.1</div><div class="modc">Witty, uncensored & real-time</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div class="mo" data-m="Unlimited AI" data-ep="unlimited-ai" data-pro="0" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="moinf"><div class="monm">Unlimited AI</div><div class="modc">AI serba guna terbaik</div></div>
+          </div>
+
+          <div class="mo" data-m="Uncensored AI" data-ep="uncensored-ai" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#dc2626,#b91c1c)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2C8 2 5 5.5 5 9.5V18a1.5 1.5 0 0 0 2.6 1l.9-1 1.4 1.4a1.5 1.5 0 0 0 2.2 0L13.5 18l1.4 1.4a1.5 1.5 0 0 0 2.2 0l.9-1A1.5 1.5 0 0 0 20.6 18V9.5C19 5.5 16 2 12 2z"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg></div>
+            <div class="moinf"><div class="monm">Uncensored AI</div><div class="modc">Tanpa filter, jawaban bebas</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div class="mo" data-m="Turboseek AI" data-ep="turboseek-ai" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="moinf"><div class="monm">Turboseek AI</div><div class="modc">Search engine dengan referensi</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div style="padding:5px 10px 3px;font-size:10px;font-weight:700;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.07em;margin-top:6px">Llama Series</div>
+
+          <div class="mo" data-m="Llama 4 Maverick" data-ep="llama4-maverick" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#818cf8,#6366f1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="moinf"><div class="monm">Llama 4 Maverick</div><div class="modc">Meta flagship - performa maksimal</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div class="mo" data-m="Llama 4 Scout" data-ep="llama4-scout" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#a5b4fc,#818cf8)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="moinf"><div class="monm">Llama 4 Scout</div><div class="modc">Efisien & ringan untuk daily use</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div style="padding:5px 10px 3px;font-size:10px;font-weight:700;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.07em;margin-top:6px">OpenAI & Google</div>
+
+          <div class="mo" data-m="GPT 5.5" data-ep="gpt-55" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#34d399,#059669)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="moinf"><div class="monm">GPT 5.5</div><div class="modc">OpenAI terbaru - all purpose</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div class="mo" data-m="Gemini 3.1 Flash" data-ep="gemini-31-flash" data-pro="1" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#60a5fa,#3b82f6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="moinf"><div class="monm">Gemini 3.1 Flash</div><div class="modc">Google multimodal - image & text</div></div>
+            <span class="mo-lock">PRO</span>
+          </div>
+
+          <div style="padding:5px 10px 3px;font-size:10px;font-weight:700;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.07em;margin-top:6px">Tools</div>
+          <div class="mo" data-m="AI Coder V2" data-ep="ai-coder-v2" data-pro="0" onclick="selModel(this)">
+            <div class="moic" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l-2 3 2 3M15 9l2 3-2 3"/></svg></div>
+            <div class="moinf"><div class="monm">AI Coder V2</div><div class="modc">Generate full project code with session memory</div></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="tsp"></div>
+      <div class="tacts">
+        <div id="incog-tb-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5.5 5 9.5V18a1.5 1.5 0 0 0 2.6 1l.9-1 1.4 1.4a1.5 1.5 0 0 0 2.2 0L13.5 18l1.4 1.4a1.5 1.5 0 0 0 2.2 0l.9-1A1.5 1.5 0 0 0 20.6 18V9.5C19 5.5 16 2 12 2z"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+          Incognito
+        </div>
+        <div id="usage-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="usage-txt">0/100</span>
+        </div>
+        <button class="tbtn" onclick="toggleTheme()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="tbtn out" onclick="openShareModal()" id="share-btn" style="display:none">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
+        <button class="tbtn out" onclick="openUpgrade()" style="color:rgb(139,92,246);border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.05)" id="upgrade-topbtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgb(139,92,246)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Upgrade
+        </button>
+      </div>
+    </div>
+
+    <div id="ca">
+      <div id="wlc">
+        <div id="wt">
+          <svg id="wlogo" width="52" height="52" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="44" stroke="rgb(207,100,58)" stroke-width="6" stroke-linecap="round" stroke-dasharray="210 60"/>
+            <circle cx="50" cy="50" r="32" stroke="rgb(195,85,40)" stroke-width="5" stroke-linecap="round" stroke-dasharray="140 60" opacity=".7"/>
+            <circle cx="50" cy="50" r="20" stroke="rgb(207,100,58)" stroke-width="4" stroke-linecap="round" stroke-dasharray="78 46" opacity=".85"/>
+            <circle cx="50" cy="50" r="9" fill="rgb(207,100,58)" opacity=".8"/>
+          </svg>
+          <h1 id="wh">How can I help you?</h1>
+        </div>
+        <div id="pills">
+          <button class="pill" onclick="usePill(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Write code</button>
+          <button class="pill" onclick="usePill(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Summarize text</button>
+          <button class="pill" onclick="usePill(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Research topic</button>
+          <button class="pill" onclick="usePill(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Help me write</button>
+          <button class="pill" onclick="usePill(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Explain concept</button>
+          <button class="pill" onclick="usePill(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Analyze data</button>
+        </div>
+      </div>
+      <div id="msgs"></div>
+    </div>
+
+    <div id="io">
+      <div id="iw">
+        <div id="ibox">
+          <div id="ap"></div>
+          <textarea id="ita" rows="1" placeholder="Message F24nT ai…" oninput="onInput(this)"></textarea>
+          <div id="ibar">
+            <button class="ibb" onclick="insertCode()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code
+            </button>
+            <button class="ibb" id="aicoder-btn" onclick="openAiCoder()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l-2 3 2 3M15 9l2 3-2 3"/></svg>AiCoder
+            </button>
+            <button class="ibb" id="srch-btn" onclick="toggleSearch()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Search
+            </button>
+            <div class="isp"></div>
+            <button id="send" onclick="sendMsg()" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="hint">F24nT ai v7 · Powered by YoeNw24 · Support teks 10K+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALL MODALS -->
+<!-- PROFILE PANEL -->
+<div id="pp" onclick="ppBgClick(event)">
+  <div class="ppcard">
+    <div class="ppd"></div>
+    <div class="pptop">
+      <div class="ppav" id="ppav">U<div class="abyz-ring"></div></div>
+      <div class="ppinf">
+        <div class="ppnm" id="ppnm">User</div>
+        <div class="ppem" id="ppem">user@email.com</div>
+        <div class="ppplan" id="ppplan"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Free Plan</div>
+      </div>
+      <button class="ib-btn" onclick="closeProfile()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="ppbody">
+      <div id="pp-upgrade-cta" style="margin:8px 12px 4px;padding:14px;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(167,139,250,.08));border:1px solid rgba(139,92,246,.25);border-radius:var(--rm);cursor:pointer" onclick="openUpgrade();closeProfile()">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgb(139,92,246)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span style="font-size:14px;font-weight:600;color:rgb(139,92,246)">Upgrade ke Abyz Plan</span>
+          <span style="margin-left:auto;font-size:11px;color:var(--clay);font-weight:700;background:rgba(207,100,58,.1);padding:1px 8px;border-radius:10px">Rp15.000/bln</span>
+        </div>
+        <div style="font-size:12.5px;color:rgb(var(--tx3));line-height:1.5">Unlimited pesan + Semua AI Pro + NekoPoi</div>
+      </div>
+      <div id="pp-abyz-info" style="display:none;margin:8px 12px 4px;padding:14px;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(167,139,250,.08));border:1px solid rgba(139,92,246,.3);border-radius:var(--rm)">
+        <div style="display:flex;align-items:center;gap:8px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgb(139,92,246)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="rgba(139,92,246,.2)"/></svg>
+          <span style="font-size:14px;font-weight:600;color:rgb(139,92,246)">Abyz Plan Aktif ✓</span>
+          <span style="margin-left:auto;font-size:11px;color:rgb(var(--tx3))">Unlimited</span>
+        </div>
+      </div>
+      <div class="ppitem" onclick="editProfile()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="ppil"><div class="ppit">My Profile</div><div class="ppis">Edit name and preferences</div></div>
+        <svg class="pparr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="ppitem" onclick="closeAllPanels();openPanel('p-stg');closeProfile()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-14.14 0M4.93 19.07a10 10 0 0 0 14.14 0M1 12h2m18 0h2"/></svg>
+        <div class="ppil"><div class="ppit">Settings</div><div class="ppis">Theme, privacy, providers</div></div>
+        <svg class="pparr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="ppdiv"></div>
+      <div style="padding:10px 12px 4px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px"><span style="font-size:13px;font-weight:500;color:rgb(var(--tx1))">Message usage</span><span style="font-size:12px;color:rgb(var(--tx3))" id="pp-usage">0 / 100</span></div>
+        <div class="ubw"><div class="ubf" id="pp-ubar" style="width:0%"></div></div>
+        <div style="font-size:12px;color:rgb(var(--tx4));margin-top:5px" id="pp-reset-note">Resets every 30 minutes</div>
+      </div>
+      <div class="ppdiv"></div>
+      <div class="ppitem" onclick="showStarred();closeProfile()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div class="ppil"><div class="ppit">Starred</div><div class="ppis" id="pp-star-sub">0 starred</div></div>
+        <svg class="pparr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="ppitem" onclick="showProjects();closeProfile()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <div class="ppil"><div class="ppit">Projects</div><div class="ppis" id="pp-proj-sub">0 projects</div></div>
+        <svg class="pparr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="ppdiv"></div>
+      <div class="ppitem" onclick="exportChats()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <div class="ppil"><div class="ppit">Export Conversations</div><div class="ppis">Download as JSON</div></div>
+        <svg class="pparr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="ppitem danger" onclick="confirmClear();closeProfile()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        <div class="ppil"><div class="ppit">Clear All Conversations</div></div>
+      </div>
+      <div class="ppdiv"></div>
+      <div class="ppitem danger" onclick="doSignOut()">
+        <svg class="ppic" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <div class="ppil"><div class="ppit">Sign out</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UPGRADE MODAL -->
+<div id="upgrade-modal" onclick="if(event.target===this)closeUpgrade()">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;max-width:860px">
+    <div class="pm-wrap">
+      <div class="pc">
+        <button class="pm-close" onclick="closeUpgrade()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="pc-head abyz-h">
+          <div class="pc-badge abyz-b">PREMIUM</div>
+          <div class="pc-name">Abyz Plan</div>
+          <div class="pc-sub">Unlimited AI · Semua Model Pro · NekoPoi</div>
+          <div class="pc-price">Rp15.000<span>/bulan</span></div>
+          <div class="pc-orig">dari Rp39.999 · Hemat 62%!</div>
+        </div>
+        <div class="pc-body">
+          <div class="pf"><div class="pf-ic abyz-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">Unlimited Pesan</span><span class="pf-s">Tanpa batas 100 msg/30 menit</span></div></div>
+          <div class="pf"><div class="pf-ic abyz-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">20+ AI Model Pro</span><span class="pf-s">Claude, GPT, DeepSeek, Llama, dll</span></div></div>
+          <div class="pf"><div class="pf-ic abyz-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">NekoPoi Full Access</span><span class="pf-s">Random, Search, Stream</span></div></div>
+          <div class="pf"><div class="pf-ic abyz-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">Badge Premium</span><span class="pf-s">Ring Abyz di profil & sidebar</span></div></div>
+          <div class="pc-steps">
+            <div class="pc-steps-t">Cara Upgrade</div>
+            <div class="ps"><div class="ps-n abyz-n">1</div><div>Hubungi admin via <a href="https://wa.me/62089527466075" target="_blank">WhatsApp</a></div></div>
+            <div class="ps"><div class="ps-n abyz-n">2</div><div>Transfer <strong>Rp15.000</strong> + kirim bukti</div></div>
+            <div class="ps"><div class="ps-n abyz-n">3</div><div>Dapat <strong>username &amp; password</strong> → Aktifkan</div></div>
+          </div>
+          <div class="pc-btns">
+            <a class="pb-wa" href="https://wa.me/62089527466075" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+            <button class="pb-code" onclick="openCodeModal('abyz')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Aktifkan
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc" style="border:2px solid rgba(245,158,11,.4)">
+        <div class="pc-head gokil-h">
+          <div class="pc-badge gokil-b">GOKIL</div>
+          <div class="pc-name">Gokil Plan</div>
+          <div class="pc-sub">Custom API · AI Persona · Fitur Eksklusif</div>
+          <div class="pc-price">Rp35.000<span>/bulan</span></div>
+          <div class="pc-orig">dari Rp99.000 · Hemat 65%!</div>
+        </div>
+        <div class="pc-body">
+          <div class="pf"><div class="pf-ic gokil-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">Semua Fitur Abyz Plan</span><span class="pf-s">Unlimited + semua model premium + NekoPoi</span></div></div>
+          <div class="pf"><div class="pf-ic gokil-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">Custom API Keys</span><span class="pf-s">Tambah API kamu sendiri</span></div></div>
+          <div class="pf"><div class="pf-ic gokil-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">Custom AI Persona</span><span class="pf-s">Atur kepribadian AI</span></div></div>
+          <div class="pf"><div class="pf-ic gokil-ic"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><span class="pf-t">Badge GOKIL Eksklusif</span><span class="pf-s">Profil bintang emas</span></div></div>
+          <div class="pc-steps">
+            <div class="pc-steps-t">Cara Upgrade</div>
+            <div class="ps gokil"><div class="ps-n gokil-n">1</div><div>Hubungi admin via <a href="https://wa.me/62089527466075" target="_blank">WhatsApp</a></div></div>
+            <div class="ps gokil"><div class="ps-n gokil-n">2</div><div>Transfer <strong>Rp35.000</strong> + kirim bukti</div></div>
+            <div class="ps gokil"><div class="ps-n gokil-n">3</div><div>Aktifkan kode → Setup API & Persona</div></div>
+          </div>
+          <div class="pc-btns">
+            <a class="pb-wa" href="https://wa.me/62089527466075" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+            <button class="pb-code" style="border-color:rgba(245,158,11,.4);color:rgb(245,158,11)" onclick="openCodeModal('gokil')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Aktifkan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pm-footer" onclick="closeUpgrade()">✕ Tutup</div>
+  </div>
+</div>
+
+<!-- CODE MODAL -->
+<div id="code-modal">
+  <div class="mc" style="max-width:370px">
+    <div class="mt" id="code-modal-title">Aktifkan Plan</div>
+    <div class="md" id="code-modal-desc">Masukkan username dan password yang diberikan admin.</div>
+    <input class="minp" type="text" id="abyz-user-inp" placeholder="Username"/>
+    <input class="minp" type="password" id="abyz-pass-inp" placeholder="Password"/>
+    <div class="mrow">
+      <button class="bcanc" onclick="closeModal('code-modal')">Batal</button>
+      <button class="babyz" id="code-activate-btn" onclick="activatePlan()">Aktifkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- GOKIL MODAL -->
+<div id="gokil-modal" onclick="if(event.target===this)closeModal('gokil-modal')">
+  <div class="gm-card">
+    <div class="gm-head">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(245,158,11)" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <span class="gm-title">Gokil Settings</span>
+      <button class="ib-btn" style="color:rgba(255,255,255,.6)" onclick="closeModal('gokil-modal')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="gm-body">
+      <div class="gm-sec">
+        <div class="gm-sec-h">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Custom API Keys
+        </div>
+        <div class="gm-sec-b" id="api-rows"></div>
+        <div style="padding:0 14px 12px">
+          <button class="api-add" onclick="addApiRow()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Tambah API
+          </button>
+        </div>
+      </div>
+      <div class="gm-sec">
+        <div class="gm-sec-h">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          AI Persona
+        </div>
+        <div class="gm-sec-b">
+          <div>
+            <div class="gm-lbl">Nama AI</div>
+            <input class="minp" style="margin-bottom:0" id="ai-name-inp" placeholder="cth: Jarvis, Siri, dll…" maxlength="30"/>
+          </div>
+          <div>
+            <div class="gm-lbl">Gaya Bahasa</div>
+            <div class="pers-opts" id="pers-opts">
+              <button class="pers-opt sel" data-v="helpful">Helpful</button>
+              <button class="pers-opt" data-v="friendly">Friendly</button>
+              <button class="pers-opt" data-v="formal">Formal</button>
+              <button class="pers-opt" data-v="casual">Casual</button>
+              <button class="pers-opt" data-v="funny">Funny</button>
+              <button class="pers-opt" data-v="strict">Strict</button>
+              <button class="pers-opt" data-v="creative">Creative</button>
+              <button class="pers-opt" data-v="custom">Custom</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gm-sec">
+        <div class="gm-sec-h">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Custom System Prompt
+        </div>
+        <div class="gm-sec-b">
+          <div class="gm-lbl">Instruksi khusus untuk AI kamu (opsional)</div>
+          <textarea class="pers-ta" id="sys-prompt-ta" placeholder="cth: Kamu adalah asisten coding expert yang selalu menjawab dalam bahasa Indonesia..." maxlength="1000"></textarea>
+          <div style="font-size:11px;color:rgb(var(--tx4));text-align:right" id="sys-prompt-count">0 / 1000</div>
+        </div>
+      </div>
+      <button class="gm-save" onclick="saveGokilSettings()">Simpan Pengaturan</button>
+    </div>
+  </div>
+</div>
+
+<!-- AICODER MODAL -->
+<div class="mbg" id="aicoder-modal">
+  <div class="mc" style="max-width:480px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+      <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,rgb(99,102,241),rgb(139,92,246));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l-2 3 2 3M15 9l2 3-2 3"/></svg>
+      </div>
+      <div><div class="mt" style="margin-bottom:0">AiCoder V2</div><div style="font-size:12px;color:rgb(var(--tx4))">Generate full project code with session memory</div></div>
+    </div>
+    <div class="md" style="margin-top:10px">Jelaskan aplikasi atau komponen yang ingin dibuat. AiCoder V2 akan membuat seluruh file proyek (HTML/CSS/JS/React/dll) yang bisa diunduh.</div>
+    <textarea class="minp mta" id="aicoder-prompt" placeholder="Contoh: buat landing page portfolio modern dengan tema gelap dan animasi" style="min-height:90px"></textarea>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 10px">
+      <button class="ibb" style="border:1px solid rgba(var(--br1),.6)" onclick="document.getElementById('aicoder-prompt').value='buat landing page portfolio modern dengan dark mode'">Portfolio</button>
+      <button class="ibb" style="border:1px solid rgba(var(--br1),.6)" onclick="document.getElementById('aicoder-prompt').value='buat aplikasi todo list dengan html css js'">Todo List</button>
+      <button class="ibb" style="border:1px solid rgba(var(--br1),.6)" onclick="document.getElementById('aicoder-prompt').value='buat komponen button dengan tailwind, beberapa varian warna'">Tailwind Button</button>
+    </div>
+    <div id="aicoder-status" style="display:none;align-items:center;gap:10px;padding:11px 13px;border-radius:10px;background:rgba(var(--bg1),1);border:1px solid rgba(var(--br1),.6);margin-bottom:12px;font-size:13px;color:rgb(var(--tx2))">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2" style="animation:cw 1s linear infinite;flex-shrink:0"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+      <span id="aicoder-status-txt">Generating code, this may take 10-30 seconds...</span>
+    </div>
+    <div id="aicoder-result" style="display:none;margin-bottom:12px"></div>
+    <div class="mrow">
+      <button class="bcanc" onclick="closeModal('aicoder-modal')">Close</button>
+      <button class="bprim" id="aicoder-gen-btn" onclick="runAiCoderV2()">Generate</button>
+    </div>
+  </div>
+</div>
+
+<!-- SHARE MODAL -->
+<div class="mbg" id="share-modal">
+  <div class="mc">
+    <div class="mt">Share conversation</div>
+    <div class="md">Anyone with this link can view a snapshot of this conversation.</div>
+    <div class="mlnk"><span class="murl" id="share-url">https://f24nt.ai/share/…</span><button class="mcp" onclick="copyShareLink()">Copy</button></div>
+    <button class="mcl" onclick="closeModal('share-modal')">Close</button>
+  </div>
+</div>
+
+<!-- NEW PROJECT MODAL -->
+<div class="mbg" id="pm">
+  <div class="mc">
+    <div class="mt">New Project</div>
+    <input class="minp" id="pni" placeholder="Project name" maxlength="60"/>
+    <textarea class="minp mta" id="pdi" placeholder="Description (optional)" maxlength="200"></textarea>
+    <div class="mrow"><button class="bcanc" onclick="closeModal('pm')">Cancel</button><button class="bprim" onclick="createProj()">Create</button></div>
+  </div>
+</div>
+
+<!-- CONFIRM CLEAR -->
+<div class="mbg" id="cm">
+  <div class="mc">
+    <div class="mt">Clear all conversations?</div>
+    <div class="md">This will permanently delete all your conversation history. Cannot be undone.</div>
+    <div class="mrow"><button class="bcanc" onclick="closeModal('cm')">Cancel</button><button class="bdang" onclick="clearAll()">Delete all</button></div>
+  </div>
+</div>
+
+<!-- EDIT PROFILE -->
+<div class="mbg" id="epm">
+  <div class="mc">
+    <div class="mt">Edit Profile</div>
+    <input class="minp" id="epni" placeholder="Display name" maxlength="40"/>
+    <div class="mrow"><button class="bcanc" onclick="closeModal('epm')">Cancel</button><button class="bprim" onclick="saveProfile()">Save</button></div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div class="dd" id="ctx" style="position:fixed;min-width:170px">
+  <div class="ditem" id="ctx-star" onclick="ctxStar()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Star
+  </div>
+  <div class="ditem" onclick="ctxRename()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Rename</div>
+  <div class="ddiv"></div>
+  <div class="ditem danger" onclick="ctxDel()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>Delete</div>
+</div>
+
+<!-- RATE LIMIT OVERLAY -->
+<div id="rate-overlay">
+  <div class="ro-card">
+    <div class="ro-ic">⏳</div>
+    <div class="ro-t">Batas Pesan Tercapai</div>
+    <div class="ro-d">Kamu sudah mencapai <strong>100 pesan</strong> dalam 30 menit.<br>Tunggu reset atau upgrade ke Abyz Plan untuk unlimited.</div>
+    <div class="ro-timer" id="ro-timer">30:00</div>
+    <div class="ro-btns">
+      <button class="bcanc" style="flex:1;padding:12px;border-radius:var(--rm);border:1px solid rgba(var(--br1),.8);font-size:14px;color:rgb(var(--tx2));transition:background .15s" onclick="closeRateLimit()">Tunggu Reset</button>
+      <button class="babyz" style="flex:1;padding:12px;border-radius:var(--rm);font-size:14px;font-weight:600" onclick="closeRateLimit();openUpgrade()">Upgrade</button>
+    </div>
+  </div>
+</div>
+
+<!-- BAN SCREEN -->
+<div id="ban-screen" style="display:none;position:fixed;inset:0;z-index:99999;background:rgb(var(--bg1));align-items:center;justify-content:center;flex-direction:column;padding:24px;text-align:center">
+  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgb(220,38,38)" stroke-width="1.5" style="margin-bottom:20px;opacity:.8"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+  <div style="font-size:22px;font-weight:700;color:rgb(var(--tx0));margin-bottom:8px;letter-spacing:-.02em">Akses Ditolak</div>
+  <div id="ban-reason" style="font-size:14px;color:rgb(var(--tx3));max-width:420px;line-height:1.6;margin-bottom:20px">Akun atau perangkat Anda telah diblokir oleh administrator.</div>
+  <div style="background:rgba(var(--bg2),1);border:1px solid rgba(var(--br1),.7);border-radius:14px;padding:18px 22px;max-width:400px;width:100%;text-align:left">
+    <div style="font-size:12px;font-weight:600;color:rgb(var(--tx4));text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Cara Mengajukan Banding</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgb(37,211,102)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="https://wa.me/62089527466075" target="_blank" style="font-size:13.5px;color:rgb(37,211,102);font-weight:500">WhatsApp Admin: 0895-2746-6075</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgb(59,130,246)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span style="font-size:13.5px;color:rgb(59,130,246)">Email: admin@f24nt.ai</span>
+    </div>
+  </div>
+  <div style="font-size:11px;color:rgb(var(--tx4));margin-top:16px">Kode: <span id="ban-code" style="font-family:monospace"></span></div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" style="display:none;position:fixed;inset:0;z-index:99998;background:rgb(var(--bg1));overflow-y:auto">
+  <div id="adm-login" style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px">
+    <div style="width:100%;max-width:360px;background:rgb(var(--bg0));border:1px solid rgba(var(--br1),.8);border-radius:18px;padding:32px 28px;box-shadow:var(--s3)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:rgb(var(--tx0))">Admin Panel</div>
+          <div style="font-size:12px;color:rgb(var(--tx4))">F24nT ai · YoeNAdmin</div>
+        </div>
+      </div>
+      <div id="adm-err" style="display:none;background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);color:rgb(185,28,28);border-radius:8px;padding:9px 12px;font-size:13px;margin-bottom:10px"></div>
+      <input id="adm-pw" type="password" placeholder="Admin Password" class="ainp" style="margin-bottom:12px" onkeydown="if(event.key==='Enter')admLogin()"/>
+      <button onclick="admLogin()" style="width:100%;padding:11px;background:rgb(var(--tx0));color:rgb(var(--bg0));border-radius:10px;font-size:14px;font-weight:600;transition:background .15s;border:none;cursor:pointer">Masuk Admin</button>
+    </div>
+  </div>
+  <div id="adm-dash" style="display:none;max-width:900px;margin:0 auto;padding:24px 20px 60px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(var(--br1),.5)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--clay)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div><div style="font-size:18px;font-weight:700;color:rgb(var(--tx0))">YoeNAdmin Dashboard</div><div style="font-size:12px;color:rgb(var(--tx4))">Manajemen Pengguna &amp; Plan F24nT ai</div></div>
+      <button onclick="admLogout()" style="margin-left:auto;padding:7px 14px;border-radius:9px;border:1px solid rgba(var(--br1),.8);font-size:13px;color:rgb(var(--tx2));background:rgb(var(--bg0));cursor:pointer;transition:background .12s" onmouseover="this.style.background='rgba(var(--bg2),1)'" onmouseout="this.style.background='rgb(var(--bg0))'">Keluar</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px" id="adm-stats"></div>
+    <div style="background:rgb(var(--bg0));border:1px solid rgba(var(--br1),.7);border-radius:14px;padding:18px;margin-bottom:16px">
+      <div style="font-size:13px;font-weight:700;color:rgb(var(--tx0));margin-bottom:14px;display:flex;align-items:center;gap:7px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        Tambah Pengguna Baru
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <input id="adm-new-user" placeholder="Username" style="flex:1;min-width:120px;padding:9px 12px;border:1px solid rgba(var(--br1),.8);border-radius:9px;background:rgb(var(--bg1));color:rgb(var(--tx0));font-size:13.5px;outline:none" oninput="this.style.borderColor=''"/>
+        <input id="adm-new-pass" placeholder="Password user" style="flex:1;min-width:120px;padding:9px 12px;border:1px solid rgba(var(--br1),.8);border-radius:9px;background:rgb(var(--bg1));color:rgb(var(--tx0));font-size:13.5px;outline:none"/>
+        <select id="adm-new-plan" style="padding:9px 12px;border:1px solid rgba(var(--br1),.8);border-radius:9px;background:rgb(var(--bg1));color:rgb(var(--tx0));font-size:13.5px;outline:none;cursor:pointer">
+          <option value="abyz">Abyz Plan</option>
+          <option value="gokil">Gokil Plan</option>
+        </select>
+        <button onclick="admAddUser()" style="padding:9px 18px;background:var(--clay);color:white;border-radius:9px;font-size:13.5px;font-weight:600;border:none;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Tambah</button>
+      </div>
+      <div id="adm-add-msg" style="font-size:12.5px;margin-top:8px;display:none"></div>
+    </div>
+    <div style="position:relative;margin-bottom:12px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgb(var(--tx4));pointer-events:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="adm-search" placeholder="Cari username..." oninput="admRender()" style="width:100%;padding:9px 12px 9px 34px;border:1px solid rgba(var(--br1),.7);border-radius:10px;background:rgb(var(--bg0));color:rgb(var(--tx0));font-size:13.5px;outline:none"/>
+    </div>
+    <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap" id="adm-tabs">
+      <button onclick="admSetFilter('all')" data-f="all" class="adm-tab adm-tab-act" style="padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;border:1px solid rgba(var(--br1),.7);cursor:pointer;background:rgb(var(--tx0));color:rgb(var(--bg0));transition:all .12s">Semua</button>
+      <button onclick="admSetFilter('abyz')" data-f="abyz" class="adm-tab" style="padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;border:1px solid rgba(var(--br1),.7);cursor:pointer;background:rgb(var(--bg0));color:rgb(var(--tx2));transition:all .12s">Abyz</button>
+      <button onclick="admSetFilter('gokil')" data-f="gokil" class="adm-tab" style="padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;border:1px solid rgba(var(--br1),.7);cursor:pointer;background:rgb(var(--bg0));color:rgb(var(--tx2));transition:all .12s">Gokil</button>
+      <button onclick="admSetFilter('banned')" data-f="banned" class="adm-tab" style="padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;border:1px solid rgba(var(--br1),.7);cursor:pointer;background:rgb(var(--bg0));color:rgb(var(--tx2));transition:all .12s">Dibanned</button>
+    </div>
+    <div id="adm-list" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div style="margin-top:20px;background:rgb(var(--bg0));border:1px solid rgba(var(--br1),.7);border-radius:14px;padding:16px">
+      <div style="font-size:13px;font-weight:700;color:rgb(var(--tx0));margin-bottom:12px;display:flex;align-items:center;gap:7px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgb(220,38,38)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        IP yang Diblokir
+      </div>
+      <div id="adm-ip-list" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px">
+        <input id="adm-ban-ip-inp" placeholder="Masukkan IP untuk diblokir" style="flex:1;padding:8px 12px;border:1px solid rgba(var(--br1),.8);border-radius:8px;background:rgb(var(--bg1));color:rgb(var(--tx0));font-size:13px;outline:none"/>
+        <button onclick="admBanIPManual()" style="padding:8px 16px;background:rgb(220,38,38);color:white;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer">Blokir IP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-wrap"></div>
+
+<!-- JS -->
+<script src="config/config.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/firebase.js"></script>
+<script src="assets/js/payment.js"></script>
+<script src="assets/js/chat.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
